@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "YouTube Auto Continue",
-  "short_name": "Auto Continue",
+  "name": "yesYoutube",
+  "short_name": "yesYoutube",
   "version": "1.0.0",
   "description": "Automatically confirms YouTube's continue-watching prompt.",
   "permissions": [],

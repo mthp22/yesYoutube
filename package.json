@@ -1,0 +1,19 @@
+{
+  "name": "yesYoutube",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Automatically confirms YouTube's continue-watching prompt.",
+  "scripts": {
+    "build": "tsx scripts/build.ts",
+    "watch": "tsx scripts/build.ts --watch",
+    "typecheck": "tsc --noEmit",
+    "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\""
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.1.32",
+    "@types/node": "^26.6.6",
+    "esbuild": "^0.25.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.8.0"
+  }
+}
