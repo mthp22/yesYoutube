@@ -1,7 +1,13 @@
 export interface DetectorConfig {
-  promptKeywords: string[];
+  dialogSelectors: string[];
+  buttonSelectors: string[];
+  promptPatterns: RegExp[];
+
+  // Exact, normalised labels that are allowed on the confirmation button.
   buttonLabels: string[];
+  maxPromptTextLength: number;
   scanInterval: number;
+  debounceMs: number;
   debug: boolean;
 }
 
