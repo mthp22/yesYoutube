@@ -1,14 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "yesYoutube",
-  "short_name": "yesYoutube",
+  "name": "yesYouTube",
+  "short_name": "yesYouTube",
   "version": "1.0.0",
-  "description": "Automatically confirms YouTube's continue-watching prompt.",
-  "permissions": [],
-  "host_permissions": [
-    "https://www.youtube.com/*",
-    "https://music.youtube.com/*"
-  ],
+  "description": "Automatically confirms YouTube's \"Video paused. Continue watching?\" inactivity prompt.",
   "content_scripts": [
     {
       "matches": [
