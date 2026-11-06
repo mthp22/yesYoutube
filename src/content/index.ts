@@ -1,51 +1,30 @@
 import { YouTubeDetector } from "./detector";
-import type { DetectorConfig } from "./types";
+import { createDetectorConfig } from "./config";
 
-const config: DetectorConfig = {
-  promptKeywords: [
-    "video paused",
-    "continue watching",
-    "are you still watching?"
-  ],
+declare const __YESYOUTUBE_DEBUG__: boolean;
 
-  buttonLabels: [
-    "yes",
-    "continue",
-    "continue watching"
-  ],
-
-  scanInterval: 2000,
-  debug: true
-};
-
-const detector = new YouTubeDetector(config);
+const detector = new YouTubeDetector(createDetectorConfig(__YESYOUTUBE_DEBUG__));
 
 detector.start();
 
-// Expose a small debugging interface.
 declare global {
   interface Window {
     youtubeAutoContinue?: {
-      stop: () => void;
       start: () => void;
+      stop: () => void;
       scan: () => void;
+      readonly isRunning: boolean;
     };
   }
 }
 
-window.youtubeAutoContinue = {
-  start: () => detector.start(),
-  stop: () => detector.stop(),
-  scan: () => {
-    const event = new Event("youtube-auto-continue-scan");
-    document.dispatchEvent(event);
-  }
-};
-
-document.addEventListener(
-  "youtube-auto-continue-scan",
-  () => {
-    detector.stop();
-    detector.start();
-  }
-);
+if (__YESYOUTUBE_DEBUG__) {
+  window.youtubeAutoContinue = {
+    start: () => detector.start(),
+    stop: () => detector.stop(),
+    scan: () => detector.scan(),
+    get isRunning(): boolean {
+      return detector.isRunning;
+    }
+  };
+}
