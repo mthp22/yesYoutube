@@ -1,0 +1,139 @@
+---
+const privacyPoints = [
+  {
+    icon: '⊘',
+    title: 'No extension permissions',
+    description: 'The manifest does not declare additional browser permissions.'
+  },
+  {
+    icon: '◎',
+    title: 'No tracking or analytics',
+    description: 'No telemetry, analytics, browsing history collection or user profiling.'
+  },
+  {
+    icon: '⇄',
+    title: 'No network requests',
+    description: 'The extension does not communicate with external APIs or remote servers.'
+  },
+  {
+    icon: '⌘',
+    title: 'No background service worker',
+    description: 'A single content script handles detection and lifecycle management.'
+  },
+  {
+    icon: '◈',
+    title: 'Limited website access',
+    description: 'Content scripts are configured only for YouTube and YouTube Music.'
+  },
+  {
+    icon: '✓',
+    title: 'No remote code execution',
+    description: 'No eval, dynamic code execution or externally loaded scripts.'
+  }
+];
+---
+
+<section class="yy-section privacy-section" id="privacy">
+  <div class="yy-container">
+
+    <div class="row gy-5 align-items-center">
+
+      <div class="col-lg-5">
+        <div data-reveal>
+
+          <span class="eyebrow">Privacy by design</span>
+
+          <h2 class="mt-3">
+            Your browser stays your business.
+          </h2>
+
+          <p class="mt-4">
+            YesYouTube is designed to work locally inside the
+            supported YouTube pages. It doesn't need your browsing
+            history, analytics or an external server.
+          </p>
+
+          <a href="./privacy/" class="btn-yy btn-yy-outline mt-3">
+            Read privacy details →
+          </a>
+
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+
+        <div class="privacy-grid" data-reveal>
+
+          {privacyPoints.map((point) => (
+            <article class="privacy-item">
+
+              <div class="privacy-icon" aria-hidden="true">
+                {point.icon}
+              </div>
+
+              <div>
+                <h3>{point.title}</h3>
+                <p>{point.description}</p>
+              </div>
+
+            </article>
+          ))}
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .privacy-section {
+    background: var(--yy-bg-soft);
+  }
+
+  .privacy-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 30px 25px;
+  }
+
+  .privacy-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .privacy-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    color: var(--yy-red);
+    background: rgba(240,68,68,.1);
+    border: 1px solid rgba(240,68,68,.15);
+    border-radius: 12px;
+  }
+
+  .privacy-item h3 {
+    margin: 3px 0 8px;
+    font-size: .98rem;
+    letter-spacing: -.02em;
+  }
+
+  .privacy-item p {
+    margin: 0;
+    font-size: .83rem;
+    line-height: 1.7;
+  }
+
+  @media(max-width: 600px) {
+    .privacy-grid {
+      grid-template-columns: 1fr;
+      gap: 25px;
+    }
+  }
+</style>

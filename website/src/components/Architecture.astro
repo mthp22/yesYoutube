@@ -1,0 +1,144 @@
+---
+const modules = [
+  {
+    name: 'types.ts',
+    description: 'Defines the detector configuration and detection result contracts.',
+    type: 'Contracts'
+  },
+  {
+    name: 'config.ts',
+    description: 'Centralizes dialog selectors, prompt patterns and confirmation labels.',
+    type: 'Configuration'
+  },
+  {
+    name: 'matcher.ts',
+    description: 'Scans the DOM and identifies valid prompts without clicking.',
+    type: 'Detection'
+  },
+  {
+    name: 'detector.ts',
+    description: 'Manages observers, timers, lifecycle and click safety.',
+    type: 'Controller'
+  },
+  {
+    name: 'index.ts',
+    description: 'Connects the detector to the YouTube page.',
+    type: 'Entry point'
+  }
+];
+---
+
+<section class="yy-section architecture-section" id="architecture">
+  <div class="yy-container">
+
+    <div class="row align-items-center gy-5">
+
+      <div class="col-lg-5">
+        <div data-reveal>
+
+          <span class="eyebrow">Under the hood</span>
+
+          <h2 class="mt-3">
+            Designed to do one thing well.
+          </h2>
+
+          <p class="mt-4">
+            A focused TypeScript architecture separates configuration,
+            DOM detection and click decisions.
+          </p>
+
+          <p>
+            Detection remains separate from action. The matcher never
+            clicks anything; the detector owns the decision.
+          </p>
+
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+
+        <div class="architecture-list" data-reveal>
+
+          {modules.map((module, index) => (
+            <div class="architecture-item">
+
+              <div class="architecture-index">
+                0{index + 1}
+              </div>
+
+              <div class="architecture-info">
+
+                <div class="d-flex justify-content-between gap-3 flex-wrap">
+                  <h3>{module.name}</h3>
+
+                  <span class="architecture-type">
+                    {module.type}
+                  </span>
+                </div>
+
+                <p>{module.description}</p>
+
+              </div>
+
+            </div>
+          ))}
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .architecture-section {
+    background: var(--yy-bg-soft);
+  }
+
+  .architecture-list {
+    padding: 10px 25px;
+    background: var(--yy-surface);
+    border: 1px solid var(--yy-border);
+    border-radius: var(--yy-radius-lg);
+  }
+
+  .architecture-item {
+    display: flex;
+    gap: 22px;
+    padding: 27px 0;
+    border-bottom: 1px solid var(--yy-border);
+  }
+
+  .architecture-item:last-child {
+    border-bottom: 0;
+  }
+
+  .architecture-index {
+    color: var(--yy-red);
+    font-family: monospace;
+    font-size: .9rem;
+  }
+
+  .architecture-info {
+    flex: 1;
+  }
+
+  .architecture-info h3 {
+    margin: 0;
+    font-family: monospace;
+    font-size: 1rem;
+    letter-spacing: 0;
+  }
+
+  .architecture-info p {
+    margin: 10px 0 0;
+    font-size: .88rem;
+  }
+
+  .architecture-type {
+    color: var(--yy-subtle);
+    font-size: .72rem;
+  }
+</style>

@@ -1,0 +1,183 @@
+---
+const base = import.meta.env.BASE_URL;
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+}
+
+const {
+  eyebrow = 'A smarter way to keep watching',
+  title = 'Your videos.<br />Uninterrupted.',
+  description = "YesYouTube automatically handles YouTube's inactivity confirmation so you can enjoy uninterrupted playback."
+} = Astro.props;
+---
+
+<section class="hero-section">
+  <div class="yy-container">
+    <div class="row align-items-center gy-5">
+
+      <div class="col-lg-6">
+        <div class="hero-content" data-reveal>
+
+          <span class="yy-badge mb-4">
+            Manifest V3 · Open Source
+          </span>
+
+          <span class="eyebrow d-block mb-3">{eyebrow}</span>
+
+          <h1 set:html={title}></h1>
+
+          <p class="hero-description">{description}</p>
+
+          <div class="d-flex flex-wrap gap-3 mt-4">
+            <a
+              href="https://github.com/YOUR_USERNAME/YesYouTube"
+              class="btn-yy btn-yy-primary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Get started ↗
+            </a>
+
+            <a href={`${base}docs/`} class="btn-yy btn-yy-outline">
+              Explore documentation
+            </a>
+          </div>
+
+          <div class="hero-trust mt-5">
+            <span>No tracking</span>
+            <span>No network requests</span>
+            <span>No unnecessary permissions</span>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="hero-visual" data-reveal>
+
+          <div class="hero-image-frame">
+            <img
+              src={`${base}media/hero-art.svg`}
+              alt="YesYouTube automatically handling the YouTube continue watching prompt"
+              width="1000"
+              height="650"
+              fetchpriority="high"
+            />
+          </div>
+
+          <div class="hero-status">
+            <span class="status-indicator"></span>
+            Automatic detection enabled
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    position: relative;
+    padding: 115px 0 125px;
+    overflow: hidden;
+  }
+
+  .hero-section::before {
+    content: "";
+    position: absolute;
+    top: -200px;
+    right: -150px;
+    width: 550px;
+    height: 550px;
+    background: rgba(240,68,68,.07);
+    filter: blur(130px);
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-content h1 {
+    max-width: 650px;
+  }
+
+  .hero-description {
+    max-width: 520px;
+    margin-top: 25px;
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+
+  .hero-trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+    color: var(--yy-subtle);
+    font-size: .78rem;
+  }
+
+  .hero-trust span::before {
+    content: "✓";
+    margin-right: 7px;
+    color: var(--yy-red);
+  }
+
+  .hero-image-frame {
+    padding: 10px;
+    background: rgba(255,255,255,.025);
+    border: 1px solid var(--yy-border);
+    border-radius: 24px;
+    box-shadow: 0 30px 100px rgba(0,0,0,.3);
+  }
+
+  .hero-image-frame img {
+    width: 100%;
+    border-radius: 16px;
+  }
+
+  .hero-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    margin: 20px auto 0;
+    padding: 12px 17px;
+    background: var(--yy-surface);
+    border: 1px solid var(--yy-border);
+    border-radius: 50px;
+    color: var(--yy-muted);
+    font-size: .8rem;
+  }
+
+  .status-indicator {
+    width: 8px;
+    height: 8px;
+    background: #46c985;
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(70,201,133,.5);
+  }
+
+  @media(max-width: 991px) {
+    .hero-section {
+      padding: 85px 0;
+    }
+  }
+
+  @media(max-width: 767px) {
+    .hero-section {
+      padding: 65px 0 80px;
+    }
+
+    .hero-trust {
+      flex-direction: column;
+      gap: 9px;
+    }
+  }
+</style>

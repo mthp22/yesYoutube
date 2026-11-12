@@ -1,0 +1,109 @@
+---
+const browsers = [
+  {
+    name: 'Google Chrome',
+    description: 'Load the unpacked Manifest V3 extension.',
+    status: 'Supported',
+    icon: 'C'
+  },
+  {
+    name: 'Microsoft Edge',
+    description: 'Load the unpacked extension through Edge extensions.',
+    status: 'Supported',
+    icon: 'E'
+  }
+];
+---
+
+<section class="yy-section-sm browser-section" id="browser-support">
+  <div class="yy-container">
+
+    <div class="section-heading text-center mx-auto" data-reveal>
+      <span class="eyebrow">Compatibility</span>
+      <h2>Built for Chromium browsers.</h2>
+      <p>
+        YesYouTube uses the Manifest V3 extension platform.
+      </p>
+    </div>
+
+    <div class="row justify-content-center g-4 mt-4">
+
+      {browsers.map((browser) => (
+        <div class="col-md-5" data-reveal>
+
+          <article class="browser-card">
+
+            <div class="browser-icon">
+              {browser.icon}
+            </div>
+
+            <div class="browser-details">
+              <h3>{browser.name}</h3>
+              <p>{browser.description}</p>
+              <span class="browser-status">
+                ✓ {browser.status}
+              </span>
+            </div>
+
+          </article>
+
+        </div>
+      ))}
+
+    </div>
+
+    <p class="browser-note text-center mt-4">
+      YouTube and YouTube Music are the supported target websites.
+    </p>
+
+  </div>
+</section>
+
+<style>
+  .browser-section {
+    background: var(--yy-bg-soft);
+  }
+
+  .browser-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    height: 100%;
+    padding: 28px;
+    background: var(--yy-surface);
+    border: 1px solid var(--yy-border);
+    border-radius: var(--yy-radius-lg);
+  }
+
+  .browser-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    background: var(--yy-surface-hover);
+    border-radius: 14px;
+    font-size: 1.5rem;
+    font-weight: 750;
+  }
+
+  .browser-details h3 {
+    font-size: 1.1rem;
+  }
+
+  .browser-details p {
+    font-size: .85rem;
+  }
+
+  .browser-status {
+    color: #46c985;
+    font-size: .8rem;
+    font-weight: 650;
+  }
+
+  .browser-note {
+    color: var(--yy-subtle);
+    font-size: .82rem;
+  }
+</style>

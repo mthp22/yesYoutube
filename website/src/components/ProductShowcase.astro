@@ -1,0 +1,160 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+
+<section class="yy-section">
+  <div class="yy-container">
+
+    <div class="section-heading text-center mx-auto" data-reveal>
+      <span class="eyebrow">See how it works</span>
+
+      <h2>One prompt. One automatic response.</h2>
+
+      <p>
+        When YouTube asks whether you're still watching,
+        YesYouTube identifies the genuine prompt and handles
+        the confirmation automatically.
+      </p>
+    </div>
+
+    <div class="showcase-wrapper mt-5" data-reveal>
+
+      <div class="showcase-heading">
+        <div class="showcase-dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <span>YouTube · YesYouTube</span>
+
+        <span class="showcase-live">
+          <span></span>
+          Detection
+        </span>
+      </div>
+
+      <div class="showcase-artwork">
+        <img
+          src={`${base}media/hero-art.svg`}
+          alt="Illustration showing the YouTube inactivity confirmation dialog"
+          width="1000"
+          height="650"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="showcase-footer">
+
+        <div>
+          <span class="showcase-check">✓</span>
+          <span>Confirmation handled automatically</span>
+        </div>
+
+        <span class="showcase-label">Privacy-first operation</span>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .showcase-wrapper {
+    max-width: 900px;
+    margin-inline: auto;
+    overflow: hidden;
+    background: var(--yy-surface);
+    border: 1px solid var(--yy-border);
+    border-radius: var(--yy-radius-lg);
+    box-shadow: 0 25px 90px rgba(0,0,0,.2);
+  }
+
+  .showcase-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    min-height: 58px;
+    padding: 0 22px;
+    background: #202128;
+    border-bottom: 1px solid var(--yy-border);
+    color: var(--yy-muted);
+    font-size: .78rem;
+  }
+
+  .showcase-dots {
+    display: flex;
+    gap: 6px;
+  }
+
+  .showcase-dots span {
+    width: 9px;
+    height: 9px;
+    background: #555;
+    border-radius: 50%;
+  }
+
+  .showcase-dots span:first-child {
+    background: var(--yy-red);
+  }
+
+  .showcase-live {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .showcase-live span {
+    width: 7px;
+    height: 7px;
+    background: #46c985;
+    border-radius: 50%;
+  }
+
+  .showcase-artwork {
+    padding: 20px;
+    background: #101115;
+  }
+
+  .showcase-artwork img {
+    width: 100%;
+    border-radius: 12px;
+  }
+
+  .showcase-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 19px 23px;
+    color: var(--yy-muted);
+    font-size: .8rem;
+  }
+
+  .showcase-check {
+    margin-right: 8px;
+    color: #46c985;
+  }
+
+  .showcase-label {
+    color: var(--yy-subtle);
+  }
+
+  @media(max-width: 600px) {
+    .showcase-footer {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .showcase-heading {
+      padding-inline: 14px;
+      font-size: .7rem;
+    }
+
+    .showcase-artwork {
+      padding: 10px;
+    }
+  }
+</style>

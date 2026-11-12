@@ -1,0 +1,64 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import FeatureCard from './FeatureCard.astro';
+
+const features = [
+  {
+    number: '01',
+    icon: '◎',
+    title: 'Smart detection',
+    description: 'Identifies the inactivity confirmation through its text and configured dialog selectors.'
+  },
+  {
+    number: '02',
+    icon: '✓',
+    title: 'Safe confirmation',
+    description: 'Only clicks an enabled, visible confirmation button inside a verified prompt.'
+  },
+  {
+    number: '03',
+    icon: '↻',
+    title: 'Dynamic monitoring',
+    description: 'MutationObserver detects dialogs dynamically inserted into the page.'
+  },
+  {
+    number: '04',
+    icon: '⌘',
+    title: 'SPA navigation',
+    description: 'Handles YouTube navigation without requiring a browser tab refresh.'
+  },
+  {
+    number: '05',
+    icon: '◉',
+    title: 'Lifecycle control',
+    description: 'Start and stop cleanly with observers, timers and listeners managed together.'
+  },
+  {
+    number: '06',
+    icon: '♫',
+    title: 'YouTube Music',
+    description: 'Supports both www.youtube.com and music.youtube.com.'
+  }
+];
+---
+
+<section class="yy-section" id="features">
+  <div class="yy-container">
+
+    <SectionHeading
+      eyebrow="Features"
+      title="Small extension. Thoughtful engineering."
+      description="Built to solve one specific problem without introducing unnecessary complexity."
+      centered={true}
+    />
+
+    <div class="row g-4 mt-4">
+      {features.map((feature) => (
+        <div class="col-md-6 col-lg-4">
+          <FeatureCard {...feature} />
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

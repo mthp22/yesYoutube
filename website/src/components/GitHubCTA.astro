@@ -1,0 +1,121 @@
+---
+const repository = 'https://github.com/YOUR_USERNAME/YesYouTube';
+---
+
+<section class="yy-section github-cta-section">
+  <div class="yy-container">
+
+    <div class="github-cta" data-reveal>
+
+      <div class="cta-decoration" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <div class="cta-content">
+
+        <span class="eyebrow">Open source. Privacy first.</span>
+
+        <h2>
+          Less interruption.<br />
+          More watching.
+        </h2>
+
+        <p>
+          Explore the source, inspect the implementation,
+          run the tests and build YesYouTube yourself.
+        </p>
+
+        <div class="d-flex flex-wrap justify-content-center gap-3 mt-4">
+
+          <a
+            href={repository}
+            class="btn-yy btn-yy-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Explore on GitHub ↗
+          </a>
+
+          <a href="./docs/" class="btn-yy btn-yy-outline">
+            Read documentation
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .github-cta {
+    position: relative;
+    overflow: hidden;
+    padding: 85px 35px;
+    background:
+      radial-gradient(
+        ellipse at 50% 120%,
+        rgba(240,68,68,.19),
+        transparent 65%
+      ),
+      var(--yy-surface);
+    border: 1px solid var(--yy-border);
+    border-radius: 28px;
+    text-align: center;
+  }
+
+  .cta-content {
+    position: relative;
+    z-index: 2;
+    max-width: 650px;
+    margin-inline: auto;
+  }
+
+  .cta-content h2 {
+    margin-top: 22px;
+  }
+
+  .cta-content p {
+    max-width: 510px;
+    margin: 20px auto 0;
+  }
+
+  .cta-decoration span {
+    position: absolute;
+    display: block;
+    width: 240px;
+    height: 240px;
+    border: 1px solid rgba(240,68,68,.09);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .cta-decoration span:nth-child(1) {
+    top: -160px;
+    left: -80px;
+  }
+
+  .cta-decoration span:nth-child(2) {
+    top: -110px;
+    right: -80px;
+    width: 310px;
+    height: 310px;
+  }
+
+  .cta-decoration span:nth-child(3) {
+    bottom: -210px;
+    left: 40%;
+    width: 350px;
+    height: 350px;
+  }
+
+  @media(max-width: 600px) {
+    .github-cta {
+      padding: 65px 20px;
+    }
+  }
+</style>
