@@ -1,0 +1,204 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+
+const stages = [
+  {
+    number: '01',
+    title: 'Watch normally',
+    description: 'YesYouTube runs as a content script on supported YouTube pages. It monitors the page without interfering with normal playback.'
+  },
+  {
+    number: '02',
+    title: 'Detect the prompt',
+    description: 'When YouTube inserts its inactivity confirmation dialog, the detector examines configured dialog elements and matches their text.'
+  },
+  {
+    number: '03',
+    title: 'Verify the button',
+    description: 'The detector checks that the confirmation button belongs to the matched dialog, is visible and is enabled.'
+  },
+  {
+    number: '04',
+    title: 'Continue watching',
+    description: 'Only when all safety checks pass does YesYouTube click the matching confirmation button.'
+  }
+];
+
+const safeguards = [
+  'Dialog selectors must match.',
+  'The dialog and its ancestors must be visible.',
+  'The dialog text must match a configured prompt pattern.',
+  'The confirmation button must be visible, enabled and inside that dialog.'
+];
+---
+
+<MainLayout
+  title="How It Works"
+  description="Discover how YesYouTube detects YouTube inactivity prompts and safely confirms playback."
+>
+
+  <section class="yy-section">
+    <div class="yy-container">
+
+      <div class="section-heading text-center mx-auto" data-reveal>
+        <span class="eyebrow">How it works</span>
+        <h1 class="mt-3">Four steps. One less interruption.</h1>
+        <p>
+          A lightweight detector handles the inactivity confirmation
+          so you don't have to return to your screen just to click a button.
+        </p>
+      </div>
+
+      <div class="how-steps mt-5">
+
+        {stages.map((stage) => (
+          <article class="how-step" data-reveal>
+
+            <span class="how-number">{stage.number}</span>
+
+            <div>
+              <h2>{stage.title}</h2>
+              <p>{stage.description}</p>
+            </div>
+
+          </article>
+        ))}
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="yy-section how-safety">
+    <div class="yy-container">
+
+      <SectionHeading
+        eyebrow="Safety model"
+        title="A click must earn its way through four checks."
+        description="The extension does not click arbitrary buttons or interact with unrelated dialogs."
+      />
+
+      <div class="safety-list mt-5">
+
+        {safeguards.map((item, index) => (
+          <div class="safety-item" data-reveal>
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <p>{item}</p>
+            <span class="safety-check" aria-hidden="true">✓</span>
+          </div>
+        ))}
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="yy-section">
+    <div class="yy-container">
+
+      <div class="row align-items-center gy-5">
+
+        <div class="col-lg-6" data-reveal>
+          <span class="eyebrow">Built for modern YouTube</span>
+
+          <h2 class="mt-3">Works with dynamically changing pages.</h2>
+
+          <p class="mt-4">
+            YouTube uses single-page application navigation.
+            YesYouTube accounts for dynamically inserted dialogs
+            and navigation changes instead of relying on a one-time scan.
+          </p>
+
+          <p>
+            A MutationObserver, lifecycle management and a polling
+            fallback help the detector respond to changes.
+          </p>
+        </div>
+
+        <div class="col-lg-6" data-reveal>
+          <div class="how-visual yy-media">
+            <img
+              src={`${import.meta.env.BASE_URL}media/hero-art.svg`}
+              alt="Illustration of the YouTube inactivity confirmation dialog"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+</MainLayout>
+
+<style>
+  .how-steps {
+    max-width: 850px;
+    margin-inline: auto;
+  }
+
+  .how-step {
+    display: flex;
+    gap: 28px;
+    padding: 35px 0;
+    border-bottom: 1px solid var(--yy-border);
+  }
+
+  .how-number {
+    color: var(--yy-red);
+    font-family: monospace;
+    font-size: 1rem;
+  }
+
+  .how-step h2 {
+    font-size: 1.4rem;
+  }
+
+  .how-step p {
+    margin: 12px 0 0;
+  }
+
+  .how-safety {
+    background: var(--yy-bg-soft);
+  }
+
+  .safety-list {
+    max-width: 800px;
+  }
+
+  .safety-item {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--yy-border);
+  }
+
+  .safety-item > span:first-child {
+    color: var(--yy-red);
+    font-family: monospace;
+  }
+
+  .safety-item p {
+    flex: 1;
+    margin: 0;
+  }
+
+  .safety-check {
+    color: #46c985;
+  }
+
+  .how-visual {
+    padding: 15px;
+  }
+
+  @media(max-width: 600px) {
+    .how-step {
+      gap: 17px;
+    }
+  }
+</style>
+
+</MainLayout>

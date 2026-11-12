@@ -1,0 +1,156 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+
+const principles = [
+  {
+    title: 'No analytics',
+    description: 'The extension does not integrate analytics or telemetry services.'
+  },
+  {
+    title: 'No network requests',
+    description: 'The extension does not make external API requests or transmit browsing information.'
+  },
+  {
+    title: 'No browsing history collection',
+    description: 'Browsing history is not read, collected or stored by the extension.'
+  },
+  {
+    title: 'No additional permissions',
+    description: 'The manifest does not declare additional extension permissions.'
+  },
+  {
+    title: 'No background service worker',
+    description: 'The extension operates through its content script on supported websites.'
+  },
+  {
+    title: 'No remote executable code',
+    description: 'The implementation does not use eval or dynamically load remote executable code.'
+  }
+];
+---
+
+<MainLayout
+  title="Privacy & Security"
+  description="Learn how YesYouTube handles privacy, permissions and browser security."
+>
+
+  <section class="yy-section">
+    <div class="yy-container">
+
+      <SectionHeading
+        eyebrow="Privacy & security"
+        title="Privacy isn't an extra feature."
+        description="YesYouTube is designed to handle its single task locally without collecting or transmitting browsing information."
+        centered={true}
+      />
+
+      <div class="privacy-principles mt-5">
+
+        {principles.map((principle, index) => (
+          <article class="yy-card" data-reveal>
+            <span class="eyebrow">{String(index + 1).padStart(2, '0')}</span>
+            <h3>{principle.title}</h3>
+            <p>{principle.description}</p>
+          </article>
+        ))}
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="yy-section privacy-details">
+    <div class="yy-container">
+
+      <div class="row gy-5">
+
+        <div class="col-lg-5">
+          <span class="eyebrow">Website access</span>
+          <h2 class="mt-3">Only where it needs to work.</h2>
+        </div>
+
+        <div class="col-lg-7">
+
+          <p>
+            The content script is configured for these website patterns:
+          </p>
+
+          <div class="privacy-domain">
+            <code>https://www.youtube.com/*</code>
+          </div>
+
+          <div class="privacy-domain">
+            <code>https://music.youtube.com/*</code>
+          </div>
+
+          <p class="mt-4">
+            The extension does not declare a separate host_permissions
+            entry. Its content script is restricted through the manifest
+            match patterns.
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="yy-divider my-5"></div>
+
+      <h3>Debug builds</h3>
+
+      <p>
+        Debug builds provide a console interface and diagnostic logs
+        to help developers inspect detector behaviour. These features
+        are controlled by a build-time constant and are removed from
+        production builds.
+      </p>
+
+      <h3 class="mt-5">Changes to this page</h3>
+
+      <p>
+        Any future changes to the extension's privacy practices
+        should be reflected in this document and the source code.
+      </p>
+
+    </div>
+  </section>
+
+</MainLayout>
+
+<style>
+  .privacy-principles {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+  }
+
+  .privacy-principles h3 {
+    margin-top: 22px;
+  }
+
+  .privacy-details {
+    background: var(--yy-bg-soft);
+  }
+
+  .privacy-domain {
+    margin-top: 14px;
+    padding: 17px 20px;
+    background: var(--yy-surface);
+    border: 1px solid var(--yy-border);
+    border-radius: 12px;
+    overflow-x: auto;
+  }
+
+  .privacy-domain code {
+    color: #ff8585;
+    white-space: nowrap;
+  }
+
+  @media(max-width: 650px) {
+    .privacy-principles {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+</MainLayout>
