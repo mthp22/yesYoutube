@@ -1,0 +1,38 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+import Hero from '../components/Hero.astro';
+import ProductShowcase from '../components/ProductShowcase.astro';
+import FeatureGrid from '../components/FeatureGrid.astro';
+import Architecture from '../components/Architecture.astro';
+import PrivacySection from '../components/PrivacySection.astro';
+import InstallationSteps from '../components/InstallationSteps.astro';
+import BrowserSupport from '../components/BrowserSupport.astro';
+import FAQ from '../components/FAQ.astro';
+import GitHubCTA from '../components/GitHubCTA.astro';
+---
+
+<MainLayout
+  title="YesYouTube — Keep Watching"
+  description="YesYouTube automatically handles YouTube's inactivity confirmation prompt. A lightweight, privacy-first Manifest V3 browser extension."
+>
+
+  <Hero />
+
+  <ProductShowcase />
+
+  <FeatureGrid />
+
+  <Architecture />
+
+  <PrivacySection />
+
+  <InstallationSteps />
+
+  <BrowserSupport />
+
+  <FAQ />
+
+  <GitHubCTA />
+
+</MainLayout>
