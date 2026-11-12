@@ -1,0 +1,916 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import '../../styles/page.css';
+
+const navigation = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'requirements', label: 'Requirements' },
+  { id: 'installation', label: 'Installation' },
+  { id: 'development', label: 'Development' },
+  { id: 'architecture', label: 'Architecture' },
+  { id: 'safety', label: 'Detection safety' },
+  { id: 'testing', label: 'Testing' },
+  { id: 'debugging', label: 'Debugging' },
+  { id: 'verification', label: 'Manual verification' },
+  { id: 'troubleshooting', label: 'Troubleshooting' },
+  { id: 'limitations', label: 'Limitations' }
+];
+
+---
+
+<MainLayout
+  title="Documentation"
+  description="Technical documentation for YesYouTube, including installation, architecture, testing and debugging."
+>
+
+</MainLayout>
+
+  <section class="docs-hero yy-section-sm">
+    <div class="yy-container">
+
+      <span class="eyebrow">Developer documentation</span>
+
+      <h1 class="mt-3">Documentation.</h1>
+
+      <p>
+        Everything you need to install, understand, build,
+        test and troubleshoot YesYouTube.
+      </p>
+
+      <div class="docs-hero-meta">
+        <span class="yy-badge">Manifest V3</span>
+        <span class="yy-badge">TypeScript</span>
+        <span class="yy-badge">Open source</span>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="docs-layout yy-section-sm">
+    <div class="yy-container">
+      <div class="row gy-5">
+        <aside class="col-lg-3">
+
+          <nav
+            class="docs-sidebar"
+            aria-label="Documentation navigation"
+          >
+
+            <span class="docs-sidebar-title">
+              ON THIS PAGE
+            </span>
+
+            {navigation.map((item) => (
+              <a
+                href={`#${item.id}`}
+                class="docs-nav-link"
+              >
+                {item.label}
+              </a>
+            ))}
+
+          </nav>
+
+        </aside>
+
+        <div class="col-lg-9 docs-content">
+        <section id="overview" class="docs-section">
+
+            <span class="eyebrow">01 / Overview</span>
+
+            <h2>What is YesYouTube?</h2>
+
+            <p>
+              YesYouTube is a Manifest V3 browser extension written
+              in TypeScript. It detects YouTube's inactivity
+              confirmation prompt and automatically clicks its
+              valid confirmation button.
+            </p>
+
+            <p>
+              Its purpose is simple: reduce interruptions during
+              long viewing sessions without requiring manual
+              interaction with the confirmation dialog.
+            </p>
+
+            <p>
+              The extension operates through a single content script.
+              It has no background service worker, makes no network
+              requests and declares no additional extension permissions.
+            </p>
+
+            <div class="docs-highlight">
+
+              <span class="eyebrow">Supported platforms</span>
+
+              <div class="docs-platforms">
+                <span>▶ YouTube</span>
+                <span>♫ YouTube Music</span>
+              </div>
+
+              <p>
+                Supported pages are limited to
+                www.youtube.com and music.youtube.com.
+              </p>
+
+            </div>
+
+          </section>
+
+          <section id="requirements" class="docs-section">
+
+            <span class="eyebrow">02 / Requirements</span>
+
+            <h2>What you'll need.</h2>
+
+            <p>
+              Before building YesYouTube locally, make sure
+              your development environment meets these requirements.
+            </p>
+
+            <div class="docs-requirements">
+
+              <div class="docs-requirement">
+
+                <div class="requirement-icon">⌘</div>
+
+                <div>
+                  <h3>Node.js</h3>
+                  <p>Version 20 or newer.</p>
+                </div>
+
+              </div>
+
+              <div class="docs-requirement">
+
+                <div class="requirement-icon">npm</div>
+
+                <div>
+                  <h3>npm</h3>
+                  <p>Version 10 or newer.</p>
+                </div>
+
+              </div>
+
+              <div class="docs-requirement">
+
+                <div class="requirement-icon">◈</div>
+
+                <div>
+                  <h3>Manifest V3 browser</h3>
+                  <p>Google Chrome or Microsoft Edge.</p>
+                </div>
+
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <section id="installation" class="docs-section">
+
+            <span class="eyebrow">03 / Installation</span>
+
+            <h2>Get started.</h2>
+
+            <p>
+              Build the extension locally and load the generated
+              distribution directory into your browser.
+            </p>
+
+
+            <h3>Step 01 — Clone the repository</h3>
+
+            <p>
+              Open your terminal and clone the YesYouTube project.
+            </p>
+
+            <pre><code>git clone https://github.com/YOUR_USERNAME/YesYouTube.git
+cd YesYouTube</code></pre>
+
+
+            <h3>Step 02 — Install dependencies</h3>
+
+            <pre><code>npm install</code></pre>
+
+
+            <h3>Step 03 — Build the extension</h3>
+
+            <pre><code>npm run build</code></pre>
+
+            <p>
+              The production build generates the extension files
+              inside the dist directory.
+            </p>
+
+
+            <div class="docs-install-card">
+
+              <div class="install-card-heading">
+                <span class="eyebrow">Chrome installation</span>
+                <span class="install-browser">Chrome</span>
+              </div>
+
+              <ol>
+                <li>Open <code>chrome://extensions/</code>.</li>
+                <li>Enable Developer mode.</li>
+                <li>Click Load unpacked.</li>
+                <li>Select the generated <code>dist/</code> directory.</li>
+                <li>Open YouTube in a browser tab.</li>
+              </ol>
+
+            </div>
+
+
+            <div class="docs-install-card">
+
+              <div class="install-card-heading">
+                <span class="eyebrow">Edge installation</span>
+                <span class="install-browser">Edge</span>
+              </div>
+
+              <ol>
+                <li>Open <code>edge://extensions/</code>.</li>
+                <li>Enable Developer mode.</li>
+                <li>Click Load unpacked.</li>
+                <li>Select the generated <code>dist/</code> directory.</li>
+                <li>Open YouTube in a browser tab.</li>
+              </ol>
+
+            </div>
+
+
+            <div class="docs-notice">
+
+              <strong>After making changes:</strong>
+
+              Rebuild the extension, click Reload on its browser
+              extension card, and refresh the YouTube tab.
+
+            </div>
+
+          </section>
+
+          <section id="development" class="docs-section">
+
+            <span class="eyebrow">04 / Development</span>
+
+            <h2>Development commands.</h2>
+
+            <p>
+              YesYouTube uses TypeScript, esbuild and Vitest
+              for its development and build workflow.
+            </p>
+
+            <div class="docs-command-list">
+
+              <div class="docs-command-item">
+                <code>npm install</code>
+                <span>Install dependencies.</span>
+              </div>
+
+              <div class="docs-command-item">
+                <code>npm run typecheck</code>
+                <span>Run strict TypeScript checks.</span>
+              </div>
+
+              <div class="docs-command-item">
+                <code>npm test</code>
+                <span>Run automated tests.</span>
+              </div>
+
+              <div class="docs-command-item">
+                <code>npm run test:watch</code>
+                <span>Run tests in watch mode.</span>
+              </div>
+
+              <div class="docs-command-item">
+                <code>npm run build</code>
+                <span>Create a production build.</span>
+              </div>
+
+              <div class="docs-command-item">
+                <code>npm run build:debug</code>
+                <span>Create a debug build.</span>
+              </div>
+
+              <div class="docs-command-item">
+                <code>npm run watch</code>
+                <span>Rebuild on source changes.</span>
+              </div>
+
+              <div class="docs-command-item">
+                <code>npm run clean</code>
+                <span>Remove generated dist files.</span>
+              </div>
+
+            </div>
+
+            <h3>Production build</h3>
+
+            <pre><code>npm run build</code></pre>
+
+            <p>
+              Generates the production extension inside dist/.
+              Debugging interfaces and diagnostic logging are
+              removed from production bundles.
+            </p>
+
+            <h3>Debug build</h3>
+
+            <pre><code>npm run build:debug</code></pre>
+
+            <p>
+              Enables diagnostic logging and exposes
+              window.youtubeAutoContinue.
+            </p>
+
+            <h3>Watch mode</h3>
+
+            <pre><code>npm run watch</code></pre>
+
+            <p>
+              Rebuilds the extension whenever source files change.
+              Watch mode uses the debug build.
+            </p>
+
+          </section>
+
+          <section id="architecture" class="docs-section">
+
+            <span class="eyebrow">05 / Architecture</span>
+
+            <h2>Small by design.</h2>
+
+            <p>
+              YesYouTube separates DOM matching from lifecycle
+              management and click decisions. Each module has
+              one clearly defined responsibility.
+            </p>
+
+            <div class="docs-module-list">
+
+              <div class="docs-module-item">
+                <div class="module-index">01</div>
+                <div class="module-information">
+                  <code>types.ts</code>
+                  <p>
+                    Defines DetectorConfig and DetectionResult
+                    contracts. Contains no side effects.
+                  </p>
+                </div>
+              </div>
+
+              <div class="docs-module-item">
+                <div class="module-index">02</div>
+                <div class="module-information">
+                  <code>config.ts</code>
+                  <p>
+                    Centralizes selectors, prompt patterns
+                    and confirmation labels.
+                  </p>
+                </div>
+              </div>
+
+              <div class="docs-module-item">
+                <div class="module-index">03</div>
+                <div class="module-information">
+                  <code>matcher.ts</code>
+                  <p>
+                    Scans the DOM and returns matching results.
+                    It identifies candidates but never clicks.
+                  </p>
+                </div>
+              </div>
+
+              <div class="docs-module-item">
+                <div class="module-index">04</div>
+                <div class="module-information">
+                  <code>detector.ts</code>
+                  <p>
+                    Owns observers, timers, listeners,
+                    lifecycle and the click decision.
+                  </p>
+                </div>
+              </div>
+
+              <div class="docs-module-item">
+                <div class="module-index">05</div>
+                <div class="module-information">
+                  <code>index.ts</code>
+                  <p>
+                    Entry point that initializes the content script.
+                  </p>
+                </div>
+              </div>
+
+              <div class="docs-module-item">
+                <div class="module-index">06</div>
+                <div class="module-information">
+                  <code>src/test/</code>
+                  <p>
+                    Contains simulated DOM fixtures and automated tests.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+
+            <h3>Directory structure</h3>
+
+            <pre><code>src/
+├── manifest.json
+├── content/
+│   ├── types.ts
+│   ├── config.ts
+│   ├── matcher.ts
+│   ├── detector.ts
+│   └── index.ts
+└── test/
+    ├── simulate.ts
+    ├── matcher.test.ts
+    └── detector.test.ts
+
+scripts/
+├── build.ts
+└── generate-icons.ts
+
+vitest.config.mts
+tsconfig.json
+package.json</code></pre>
+
+            <h3>Module boundaries</h3>
+
+            <ul>
+              <li><code>matcher.ts</code> never performs clicks.</li>
+              <li><code>detector.ts</code> owns stateful behaviour.</li>
+              <li><code>config.ts</code> centralizes detection rules.</li>
+              <li><code>index.ts</code> initializes the content script.</li>
+              <li>Test fixtures never enter the production bundle.</li>
+            </ul>
+
+            <div class="docs-notice">
+              <strong>Design principle:</strong>
+              Keep detection, decision-making and lifecycle
+              management separate and independently testable.
+            </div>
+
+          </section>
+
+          <section id="safety" class="docs-section">
+
+            <span class="eyebrow">06 / Detection safety</span>
+
+            <h2>Four gates before every click.</h2>
+
+            <p>
+              The detector follows a restrictive approach:
+              a confirmation button is considered only after
+              its containing dialog has been identified.
+            </p>
+
+            <div class="docs-safety-list">
+
+              <div class="docs-safety-item">
+                <span>01</span>
+                <div>
+                  <h3>Dialog identification</h3>
+                  <p>A configured dialog selector must match.</p>
+                </div>
+              </div>
+
+              <div class="docs-safety-item">
+                <span>02</span>
+                <div>
+                  <h3>Visibility verification</h3>
+                  <p>
+                    The dialog and its ancestors must be visible,
+                    not hidden or aria-hidden.
+                  </p>
+                </div>
+              </div>
+
+              <div class="docs-safety-item">
+                <span>03</span>
+                <div>
+                  <h3>Prompt text matching</h3>
+                  <p>
+                    Dialog text must be short and match a
+                    configured inactivity prompt pattern.
+                  </p>
+                </div>
+              </div>
+
+              <div class="docs-safety-item">
+                <span>04</span>
+                <div>
+                  <h3>Confirmation verification</h3>
+                  <p>
+                    A visible, enabled button inside that dialog
+                    must have an exact configured confirmation label.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+
+            <h3>Accepted confirmation labels</h3>
+
+            <div class="docs-label-list">
+              <span>Yes</span>
+              <span>OK</span>
+              <span>Continue</span>
+              <span>Continue watching</span>
+            </div>
+
+            <h3>What gets ignored?</h3>
+
+            <ul>
+              <li>Unrelated dialogs containing Yes buttons.</li>
+              <li>Buttons outside the identified prompt.</li>
+              <li>No, Cancel and Never buttons.</li>
+              <li>Hidden or disabled confirmation buttons.</li>
+              <li>Dialogs without matching prompt text.</li>
+            </ul>
+
+            <div class="docs-notice">
+              <strong>Important:</strong>
+              The matcher identifies candidates but never clicks.
+              The detector owns the final interaction decision.
+            </div>
+
+          </section>
+
+          <section id="testing" class="docs-section">
+
+            <span class="eyebrow">07 / Testing</span>
+
+            <h2>Tested behaviour.</h2>
+
+            <p>
+              Vitest and jsdom provide a simulated DOM environment
+              for testing detection behaviour and lifecycle management.
+            </p>
+
+            <h3>Run the test suite</h3>
+
+            <pre><code>npm test</code></pre>
+
+            <h3>Watch mode</h3>
+
+            <pre><code>npm run test:watch</code></pre>
+
+            <h3>Coverage areas</h3>
+
+            <ul>
+              <li>Prompt detection on YouTube and YouTube Music fixtures.</li>
+              <li>Platform-specific dialog selector matching.</li>
+              <li>Correct confirmation button identification.</li>
+              <li>Unrelated dialogs and buttons ignored.</li>
+              <li>Missing, hidden and disabled confirmation buttons.</li>
+              <li>Dynamically inserted dialogs.</li>
+              <li>Dialog removal and recreation.</li>
+              <li>Duplicate click prevention.</li>
+              <li>Detector start and stop lifecycle.</li>
+              <li>Observer and timer cleanup.</li>
+              <li>Polling fallback.</li>
+              <li>YouTube SPA navigation handling.</li>
+            </ul>
+
+            <div class="docs-highlight">
+
+              <span class="eyebrow">Test results</span>
+
+              <h3>26 automated tests pass.</h3>
+
+              <p>
+                Simulated DOM fixtures verify detector behaviour
+                against recreated prompt structures. They do not
+                establish compatibility with YouTube's current
+                live interface.
+              </p>
+
+            </div>
+
+            <div class="docs-notice">
+              <strong>Verification boundary:</strong>
+              Automated tests validate the implementation against
+              controlled fixtures. Manual verification is still
+              required to confirm genuine YouTube compatibility.
+            </div>
+
+          </section>
+
+          <section id="debugging" class="docs-section">
+
+            <span class="eyebrow">08 / Debugging</span>
+
+            <h2>Inspect what's happening.</h2>
+
+            <p>
+              YesYouTube includes an optional debugging interface
+              that helps developers inspect detector behaviour.
+            </p>
+
+            <h3>Create a debug build</h3>
+
+            <pre><code>npm run build:debug</code></pre>
+
+            <p>
+              Reload the extension after generating the debug build.
+              Open YouTube and launch your browser's developer tools.
+            </p>
+
+            <h3>Console logging</h3>
+
+            <p>
+              Debug messages use the following prefix:
+            </p>
+
+            <pre><code>[yesYouTube]</code></pre>
+
+            <p>
+              When the inactivity prompt is detected, the console
+              reports detection and confirmation-click events.
+            </p>
+
+            <h3>Debugging interface</h3>
+
+            <p>
+              Debug builds expose window.youtubeAutoContinue
+              for inspecting and controlling the detector.
+            </p>
+
+            <div class="docs-debug-list">
+
+              <div class="docs-debug-item">
+                <code>window.youtubeAutoContinue.isRunning</code>
+                <span>Check whether detection is running.</span>
+              </div>
+
+              <div class="docs-debug-item">
+                <code>window.youtubeAutoContinue.stop()</code>
+                <span>Stop detection.</span>
+              </div>
+
+              <div class="docs-debug-item">
+                <code>window.youtubeAutoContinue.start()</code>
+                <span>Resume detection.</span>
+              </div>
+
+              <div class="docs-debug-item">
+                <code>window.youtubeAutoContinue.scan()</code>
+                <span>Request one immediate scan.</span>
+              </div>
+
+            </div>
+
+            <div class="docs-notice">
+              <strong>Important:</strong>
+              scan() does nothing while detection is stopped.
+              Call start() before requesting a scan.
+            </div>
+
+            <h3>Production versus debug</h3>
+
+            <p>
+              The debugging interface and diagnostic logging
+              are controlled by the build-time constant
+              __YESYOUTUBE_DEBUG__.
+            </p>
+
+            <ul>
+              <li>Production builds do not expose the debug interface.</li>
+              <li>Production builds omit debug logging.</li>
+              <li>Debug builds include diagnostic functionality.</li>
+            </ul>
+
+          </section>
+
+          <section id="verification" class="docs-section">
+
+            <span class="eyebrow">09 / Manual verification</span>
+
+            <h2>Test the real experience.</h2>
+
+            <p>
+              Automated tests use simulated DOM fixtures.
+              Manual verification is necessary to establish
+              compatibility with YouTube's genuine interface.
+            </p>
+
+            <h3>Before testing</h3>
+
+            <ul>
+              <li>Build the extension using the debug configuration.</li>
+              <li>Load the generated dist/ directory.</li>
+              <li>Open a YouTube tab in the foreground.</li>
+              <li>Enable Autoplay.</li>
+              <li>Open browser developer tools.</li>
+            </ul>
+
+            <h3>Test on YouTube</h3>
+
+            <div class="docs-verification-list">
+
+              <div class="docs-verification-item">
+                <span>01</span>
+                <p>
+                  Open <code>https://www.youtube.com/</code>
+                  and start watching a video.
+                </p>
+              </div>
+
+              <div class="docs-verification-item">
+                <span>02</span>
+                <p>
+                  Leave the tab untouched and wait for the
+                  inactivity confirmation prompt.
+                </p>
+              </div>
+
+              <div class="docs-verification-item">
+                <span>03</span>
+                <p>
+                  Inspect the developer console for
+                  <code>[yesYouTube]</code> messages.
+                </p>
+              </div>
+
+              <div class="docs-verification-item">
+                <span>04</span>
+                <p>
+                  Confirm that the expected confirmation
+                  button is clicked.
+                </p>
+              </div>
+
+              <div class="docs-verification-item">
+                <span>05</span>
+                <p>
+                  Check whether playback resumes.
+                </p>
+              </div>
+
+            </div>
+
+            <h3>Repeat on YouTube Music</h3>
+
+            <pre><code>https://music.youtube.com/</code></pre>
+
+            <p>
+              Repeat the verification process to check the
+              YouTube Music dialog structure independently.
+            </p>
+
+            <div class="docs-notice">
+              <strong>Timing note:</strong>
+              The documented web inactivity prompt generally
+              appears after 60 minutes of uninterrupted watching.
+              Actual behaviour may vary with YouTube's implementation.
+            </div>
+
+          </section>
+
+          <section id="troubleshooting" class="docs-section">
+
+            <span class="eyebrow">10 / Troubleshooting</span>
+
+            <h2>Something not working?</h2>
+
+            <p>
+              Use the following workflow when the detector
+              stops identifying the inactivity confirmation prompt.
+            </p>
+
+            <div class="docs-troubleshooting-list">
+
+              <article class="docs-troubleshooting-item">
+                <span class="eyebrow">Problem 01</span>
+                <h3>Prompt is not detected.</h3>
+                <p>
+                  Create a debug build, reload the extension
+                  and inspect the actual dialog structure
+                  using browser developer tools.
+                </p>
+              </article>
+
+              <article class="docs-troubleshooting-item">
+                <span class="eyebrow">Problem 02</span>
+                <h3>Button is not identified.</h3>
+                <p>
+                  Inspect the confirmation button's accessible
+                  label, visibility and disabled state.
+                  Compare them with the configured labels.
+                </p>
+              </article>
+
+              <article class="docs-troubleshooting-item">
+                <span class="eyebrow">Problem 03</span>
+                <h3>YouTube changed its interface.</h3>
+                <p>
+                  Review the dialog selectors and prompt patterns
+                  in src/content/config.ts.
+                </p>
+              </article>
+
+              <article class="docs-troubleshooting-item">
+                <span class="eyebrow">Problem 04</span>
+                <h3>Playback does not resume.</h3>
+                <p>
+                  Verify that the confirmation click occurred.
+                  Other YouTube playback conditions may still
+                  prevent playback from continuing.
+                </p>
+              </article>
+
+            </div>
+
+            <h3>Recommended maintenance workflow</h3>
+
+            <pre><code>npm run build:debug
+
+# Inspect the dialog and update config.ts
+
+npm run typecheck
+npm test
+npm run build</code></pre>
+
+            <p>
+              When changing detection rules, add or update
+              a simulated DOM fixture and its corresponding test.
+            </p>
+
+          </section>
+
+          <section id="limitations" class="docs-section">
+
+            <span class="eyebrow">11 / Known limitations</span>
+
+            <h2>Built with realistic expectations.</h2>
+
+            <p>
+              YesYouTube is intentionally small and focused.
+              There are a few important boundaries to understand.
+            </p>
+
+            <div class="docs-limitations-list">
+
+              <article class="docs-limitation-item">
+                <h3>Playback is not guaranteed.</h3>
+                <p>
+                  The extension attempts to confirm the
+                  inactivity prompt. YouTube may still pause
+                  playback because of other conditions.
+                </p>
+              </article>
+
+              <article class="docs-limitation-item">
+                <h3>Interface changes can affect detection.</h3>
+                <p>
+                  Changes to YouTube's dialog structure,
+                  selectors or accessible labels may require
+                  configuration updates.
+                </p>
+              </article>
+
+              <article class="docs-limitation-item">
+                <h3>Simulated tests are not live-site tests.</h3>
+                <p>
+                  Automated tests verify behaviour against
+                  recreated DOM fixtures, not the current
+                  production YouTube interface.
+                </p>
+              </article>
+
+              <article class="docs-limitation-item">
+                <h3>Supported websites are limited.</h3>
+                <p>
+                  Content scripts are configured for
+                  www.youtube.com and music.youtube.com.
+                </p>
+              </article>
+
+            </div>
+
+            <div class="docs-notice">
+              <strong>Project philosophy:</strong>
+              YesYouTube aims to handle one specific interruption
+              safely, without unnecessary permissions,
+              background services or network communication.
+            </div>
+
+          </section>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+<script>
+  import '../../scripts/docs-navigation';
+  import '../../scripts/docs-code';
+</script>
