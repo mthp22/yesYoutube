@@ -1,0 +1,45 @@
+---
+interface Props {
+  number?: string;
+  title: string;
+  description: string;
+  icon?: string;
+}
+
+const {
+  number,
+  title,
+  description,
+  icon = '✦'
+} = Astro.props;
+---
+
+<article class="yy-card feature-card" data-reveal>
+
+  <div class="feature-top">
+    <div class="yy-card-icon" aria-hidden="true">
+      {icon}
+    </div>
+
+    {number && <span class="feature-number">{number}</span>}
+  </div>
+
+  <h3>{title}</h3>
+
+  <p>{description}</p>
+
+</article>
+
+<style>
+  .feature-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .feature-number {
+    color: var(--yy-subtle);
+    font-family: monospace;
+    font-size: .8rem;
+  }
+</style>
