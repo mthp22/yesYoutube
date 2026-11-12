@@ -1,3 +1,4 @@
+
 import { deflateSync } from "node:zlib";
 import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
@@ -5,10 +6,9 @@ import { join } from "node:path";
 /**
  * Generates the extension icons at build time.
  *
- * Icons are a Manifest V3 requirement for Chrome Web Store submission, but
- * generating them here keeps binaries out of the repository and avoids
- * introducing an image-processing dependency. The output is a plain RGBA PNG
- * (a red rounded square with a white play triangle).
+ * Icons are a Manifest V3 requirement for Chrome Web Store submission.
+ * The output is a plain RGBA PNG (a red rounded square with white YES
+ * lettering and a white play triangle).
  */
 
 const CRC_TABLE = (() => {
@@ -65,9 +65,9 @@ function insideRoundedSquare(x: number, y: number, size: number): boolean {
 
 function insidePlayTriangle(x: number, y: number, size: number): boolean {
   const points: Array<[number, number]> = [
-    [0.36 * size, 0.28 * size],
-    [0.36 * size, 0.72 * size],
-    [0.76 * size, 0.5 * size]
+    [0.65 * size, 0.28 * size],
+    [0.65 * size, 0.72 * size],
+    [0.89 * size, 0.5 * size]
   ];
 
   const sign = (
@@ -85,6 +85,77 @@ function insidePlayTriangle(x: number, y: number, size: number): boolean {
   return !(hasNegative && hasPositive);
 }
 
+// Simple 5x7 bitmap font for YES.
+const YES_FONT: Record<string, number[]> = {
+  y: [
+    0b10001,
+    0b10001,
+    0b01010,
+    0b00100,
+    0b00100,
+    0b00100,
+    0b00100
+  ],
+  e: [
+    0b11111,
+    0b10000,
+    0b10000,
+    0b11110,
+    0b10000,
+    0b10000,
+    0b11111
+  ],
+  s: [
+    0b01111,
+    0b10000,
+    0b10000,
+    0b01110,
+    0b00001,
+    0b00001,
+    0b11110
+  ]
+};
+
+function insideYesText(x: number, y: number, size: number): boolean {
+  const scale = size / 128;
+  const pixelSize = Math.max(1, Math.round(4 * scale));
+  const spacing = Math.max(1, Math.round(1 * scale));
+
+  const textWidth = 15 * pixelSize + 2 * spacing;
+  const textHeight = 7 * pixelSize;
+
+  const startX = Math.round(size * 0.10);
+  const startY = Math.round((size - textHeight) / 2);
+
+  const relativeX = x - startX;
+  const relativeY = y - startY;
+
+  if (
+    relativeX < 0 ||
+    relativeY < 0 ||
+    relativeX >= textWidth ||
+    relativeY >= textHeight
+  ) {
+    return false;
+  }
+
+  const characterWidth = 5 * pixelSize + spacing;
+  const characterIndex = Math.floor(relativeX / characterWidth);
+
+  if (characterIndex >= 3) return false;
+
+  const characterX = relativeX - characterIndex * characterWidth;
+  const characterY = Math.floor(relativeY / pixelSize);
+
+  if (characterY >= 7 || characterX >= 5 * pixelSize) return false;
+
+  const character = ["y", "e", "s"][characterIndex];
+  const row = YES_FONT[character][characterY];
+  const column = Math.floor(characterX / pixelSize);
+
+  return (row & (1 << (4 - column))) !== 0;
+}
+
 function renderIcon(size: number): Buffer {
   // One filter byte (0) followed by RGBA for every pixel, per scanline.
   const raw = Buffer.alloc(size * (1 + size * 4));
@@ -99,7 +170,10 @@ function renderIcon(size: number): Buffer {
 
       if (!insideSquare) {
         raw.writeUInt32BE(0x00000000, offset);
-      } else if (insidePlayTriangle(x, y, size)) {
+      } else if (
+        insideYesText(x, y, size) ||
+        insidePlayTriangle(x, y, size)
+      ) {
         raw.writeUInt32BE(0xffffffff, offset);
       } else {
         // YouTube red.
