@@ -1,4 +1,6 @@
 ---
+import { REPO_URL } from '../config';
+
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
@@ -34,7 +36,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       <div class="footer-column">
         <h3>Project</h3>
         <a
-          href="https://github.com/YOUR_USERNAME/YesYouTube"
+          href={REPO_URL}
           target="_blank"
           rel="noopener noreferrer"
         >

@@ -1,10 +1,12 @@
 ---
+import { CLONE_URL } from '../config';
+
 const steps = [
   {
     number: '01',
     title: 'Clone the repository',
     description: 'Get the YesYouTube source code onto your computer.',
-    command: 'git clone https://github.com/YOUR_USERNAME/YesYouTube.git'
+    command: `git clone ${CLONE_URL}`
   },
   {
     number: '02',

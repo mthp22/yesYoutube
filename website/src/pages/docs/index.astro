@@ -1,5 +1,6 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
+import { CLONE_URL } from '../../config';
 import '../../styles/page.css';
 
 const navigation = [
@@ -216,8 +217,8 @@ const navigation = [
               Open your terminal and clone the YesYouTube project.
             </p>
 
-            <pre><code>git clone https://github.com/YOUR_USERNAME/YesYouTube.git
-cd YesYouTube</code></pre>
+            <pre><code>{`git clone ${CLONE_URL}
+cd YesYouTube`}</code></pre>
 
 
             <h3>Step 02 — Install dependencies</h3>

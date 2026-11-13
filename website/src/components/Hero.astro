@@ -1,4 +1,6 @@
 ---
+import { REPO_URL } from '../config';
+
 const base = import.meta.env.BASE_URL;
 
 interface Props {
@@ -33,7 +35,7 @@ const {
 
           <div class="d-flex flex-wrap gap-3 mt-4">
             <a
-              href="https://github.com/YOUR_USERNAME/YesYouTube"
+              href={REPO_URL}
               class="btn-yy btn-yy-primary"
               target="_blank"
               rel="noopener noreferrer"

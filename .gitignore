@@ -4,3 +4,6 @@ dist/
 .DS_Store
 *.sh
 .astro/
+.env
+.env.*
+!.env.example
