@@ -23,8 +23,6 @@ const navigation = [
   description="Technical documentation for YesYouTube, including installation, architecture, testing and debugging."
 >
 
-</MainLayout>
-
   <section class="docs-hero yy-section-sm">
     <div class="yy-container">
 
@@ -55,6 +53,38 @@ const navigation = [
             class="docs-sidebar"
             aria-label="Documentation navigation"
           >
+
+            <div class="docs-search">
+              <label class="visually-hidden" for="docs-search-input">
+                Search documentation
+              </label>
+
+              <input
+                id="docs-search-input"
+                class="docs-search-input"
+                type="search"
+                placeholder="Search documentation…"
+                autocomplete="off"
+                spellcheck="false"
+                role="combobox"
+                aria-expanded="false"
+                aria-controls="docs-search-results"
+                aria-autocomplete="list"
+              />
+
+              <span class="docs-search-key" aria-hidden="true">/</span>
+
+              <div
+                class="docs-search-results"
+                id="docs-search-results"
+                role="listbox"
+                aria-label="Search results"
+                hidden
+              >
+              </div>
+
+              <span class="visually-hidden docs-search-status" aria-live="polite"></span>
+            </div>
 
             <span class="docs-sidebar-title">
               ON THIS PAGE
@@ -582,7 +612,7 @@ package.json</code></pre>
 
               <span class="eyebrow">Test results</span>
 
-              <h3>26 automated tests pass.</h3>
+              <h3>30 automated tests pass.</h3>
 
               <p>
                 Simulated DOM fixtures verify detector behaviour
@@ -910,7 +940,10 @@ npm run build</code></pre>
     </div>
   </section>
 
+</MainLayout>
+
 <script>
   import '../../scripts/docs-navigation';
   import '../../scripts/docs-code';
+  import '../../scripts/docs-search';
 </script>

@@ -196,7 +196,7 @@ The suite runs on **Vitest + jsdom** and covers:
 
 | Category | Status |
 | --- | --- |
-| **Detector behaviour** against a simulated DOM fixture | **Verified** — 26 automated tests pass |
+| **Detector behaviour** against a simulated DOM fixture | **Verified** — 30 automated tests pass |
 | **Genuine YouTube compatibility** against the live site | **Not verified** — no test in this repository loads YouTube |
 
 A simulated fixture verifies that the matcher and detector behave correctly
