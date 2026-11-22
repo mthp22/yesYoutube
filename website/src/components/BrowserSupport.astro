@@ -21,22 +21,22 @@ const listings: Array<{
   name: string;
   store: string;
   icon: string;
-  status: 'available' | 'pending';
+  status: 'live' | 'pending';
   href: string | null;
 }> = [
   {
     name: 'Microsoft Edge',
     store: 'Microsoft Edge Add-ons',
     icon: 'browser-edge.png',
-    status: 'pending',
-    href: null
+    status: 'live',
+    href: "https://microsoftedge.microsoft.com/addons/detail/yesyoutube/kkafepceokhpcoflhobmickkpmfknihk"
   },
   {
     name: 'Firefox',
     store: 'Firefox Add-ons (AMO)',
     icon: 'browser-firefox.png',
-    status: 'pending',
-    href: null
+    status: 'live',
+    href: "https://addons.mozilla.org/en-US/firefox/addon/yesyoutube/"
   }
 ];
 ---
@@ -121,7 +121,7 @@ const listings: Array<{
                     : '✓ Available'}
                 </span>
 
-                {listing.status === 'available' && listing.href ? (
+                {listing.status === 'live' && listing.href ? (
                   <a
                     href={listing.href}
                     class="btn-yy btn-yy-primary listing-cta"
